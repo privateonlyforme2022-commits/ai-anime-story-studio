@@ -1,1 +1,755 @@
 
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="theme-color" content="#090916">
+<title>Anime Story Studio</title>
+
+<style>
+* {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+:root {
+  --bg: #090916;
+  --card: #121225;
+  --card2: #1a1932;
+  --purple: #9b5cff;
+  --pink: #ed4cff;
+  --text: #f5f3ff;
+  --muted: #aaa5c8;
+  --border: #30294d;
+  --success: #53e6b5;
+}
+
+body {
+  font-family: Arial, sans-serif;
+  background: radial-gradient(circle at top, #201044, var(--bg) 55%);
+  color: var(--text);
+  min-height: 100vh;
+  padding-bottom: 40px;
+}
+
+header {
+  padding: 25px 18px;
+  text-align: center;
+  border-bottom: 1px solid var(--border);
+  background: rgba(9, 9, 22, .9);
+}
+
+.logo {
+  font-size: 27px;
+  font-weight: bold;
+  background: linear-gradient(90deg, #b77aff, #ff66dd);
+  color: transparent;
+  background-clip: text;
+}
+
+.subtitle {
+  color: var(--muted);
+  margin-top: 8px;
+  font-size: 13px;
+}
+
+.container {
+  max-width: 850px;
+  margin: auto;
+  padding: 18px;
+}
+
+.card {
+  background: linear-gradient(145deg, var(--card), #0e0e20);
+  border: 1px solid var(--border);
+  border-radius: 18px;
+  padding: 20px;
+  margin-bottom: 18px;
+  box-shadow: 0 8px 30px rgba(0,0,0,.25);
+}
+
+h2 {
+  font-size: 20px;
+  margin-bottom: 18px;
+}
+
+h3 {
+  font-size: 16px;
+  margin: 20px 0 10px;
+  color: #d5baff;
+}
+
+label {
+  display: block;
+  margin: 13px 0 7px;
+  color: #d7d0f2;
+  font-size: 13px;
+}
+
+input, textarea, select {
+  width: 100%;
+  padding: 13px;
+  border: 1px solid var(--border);
+  border-radius: 10px;
+  background: #0b0b19;
+  color: white;
+  font-size: 14px;
+  outline: none;
+}
+
+input:focus, textarea:focus, select:focus {
+  border-color: var(--purple);
+}
+
+textarea {
+  min-height: 95px;
+  resize: vertical;
+}
+
+button {
+  border: none;
+  border-radius: 10px;
+  padding: 13px 16px;
+  margin-top: 12px;
+  font-weight: bold;
+  font-size: 13px;
+  cursor: pointer;
+  color: white;
+  background: linear-gradient(90deg, #783cff, #c23fff);
+}
+
+button:active {
+  transform: scale(.98);
+}
+
+button.secondary {
+  background: #292342;
+  border: 1px solid #514475;
+}
+
+button.green {
+  background: #12634e;
+  border: 1px solid #238d70;
+}
+
+button.danger {
+  background: #61213b;
+}
+
+.button-row {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px;
+}
+
+.button-row button {
+  flex: 1;
+  min-width: 120px;
+}
+
+.status {
+  margin-top: 12px;
+  color: var(--success);
+  font-size: 13px;
+}
+
+.output {
+  background: #080812;
+  border: 1px dashed #514475;
+  border-radius: 12px;
+  padding: 15px;
+  margin-top: 15px;
+  white-space: pre-wrap;
+  line-height: 1.6;
+  font-size: 13px;
+  color: #e9e1ff;
+  overflow-wrap: anywhere;
+}
+
+.hidden {
+  display: none;
+}
+
+.badge {
+  display: inline-block;
+  padding: 5px 10px;
+  background: #2a1d4d;
+  border: 1px solid #62418b;
+  border-radius: 20px;
+  color: #d9baff;
+  font-size: 11px;
+  margin-bottom: 12px;
+}
+
+.saved-project {
+  background: #19172d;
+  border: 1px solid var(--border);
+  padding: 12px;
+  border-radius: 10px;
+  margin-top: 8px;
+}
+
+.saved-project strong {
+  color: #d6b5ff;
+}
+
+small {
+  color: var(--muted);
+}
+
+footer {
+  text-align: center;
+  color: #77718f;
+  font-size: 12px;
+  margin-top: 30px;
+}
+
+@media (max-width: 500px) {
+  .container {
+    padding: 12px;
+  }
+
+  .card {
+    padding: 16px;
+  }
+
+  .logo {
+    font-size: 23px;
+  }
+}
+</style>
+</head>
+
+<body>
+
+<header>
+  <div class="logo">✦ ANIME STORY STUDIO</div>
+  <div class="subtitle">Create worlds • Build characters • Write cinematic scenes</div>
+</header>
+
+<main class="container">
+
+  <section class="card">
+    <span class="badge">VERSION 1 • STORY CREATOR</span>
+    <h2>🌌 Create Your Story</h2>
+
+    <label>Story Title</label>
+    <input id="storyTitle" placeholder="Example: The Last Shadow">
+
+    <label>Language</label>
+    <select id="language">
+      <option value="English">English</option>
+      <option value="Tamil">Tamil</option>
+      <option value="Thanglish">Thanglish</option>
+    </select>
+
+    <label>Genre</label>
+    <select id="genre">
+      <option>Action Fantasy</option>
+      <option>Dark Fantasy</option>
+      <option>Romance</option>
+      <option>Adventure</option>
+      <option>System / Reincarnation</option>
+      <option>Thriller</option>
+      <option>Slice of Life</option>
+      <option>Science Fiction</option>
+    </select>
+
+    <label>Main Character Name</label>
+    <input id="heroName" placeholder="Example: Ryan">
+
+    <label>Main Character Description</label>
+    <textarea id="heroDescription" placeholder="Age, appearance, personality, clothing and abilities..."></textarea>
+
+    <label>World Setting</label>
+    <textarea id="world" placeholder="Describe the world, city, kingdom, school or fantasy universe..."></textarea>
+
+    <label>Story Premise</label>
+    <textarea id="premise" placeholder="What happens in your story?"></textarea>
+
+    <label>Story Tone</label>
+    <select id="tone">
+      <option>Cinematic and emotional</option>
+      <option>Dark and intense</option>
+      <option>Peaceful and warm</option>
+      <option>Epic and powerful</option>
+      <option>Funny and adventurous</option>
+      <option>Romantic and emotional</option>
+    </select>
+
+    <label>Number of Scenes</label>
+    <select id="sceneCount">
+      <option value="3">3 Scenes</option>
+      <option value="5" selected>5 Scenes</option>
+      <option value="8">8 Scenes</option>
+      <option value="10">10 Scenes</option>
+    </select>
+
+    <div class="button-row">
+      <button onclick="generateStory()">✨ Generate Story</button>
+      <button class="secondary" onclick="clearForm()">Clear</button>
+    </div>
+
+    <div id="storyOutput" class="output hidden"></div>
+
+    <div class="button-row">
+      <button class="secondary" onclick="copyElement('storyOutput')">📋 Copy Story</button>
+      <button class="green" onclick="saveProject()">💾 Save Project</button>
+    </div>
+
+    <div id="storyStatus" class="status"></div>
+  </section>
+
+  <section class="card">
+    <h2>🎭 Character Reference Sheet</h2>
+
+    <label>Character Name</label>
+    <input id="characterName" placeholder="Character name">
+
+    <label>Age</label>
+    <input id="characterAge" placeholder="Example: 25">
+
+    <label>Gender / Identity</label>
+    <input id="characterGender" placeholder="Example: Male">
+
+    <label>Hair Style and Color</label>
+    <input id="hair" placeholder="Example: Messy black hair">
+
+    <label>Eye Color</label>
+    <input id="eyes" placeholder="Example: Dark blue eyes">
+
+    <label>Clothing</label>
+    <textarea id="clothing" placeholder="Describe the character's outfit..."></textarea>
+
+    <label>Personality</label>
+    <textarea id="personality" placeholder="Calm, confident, emotional, mysterious..."></textarea>
+
+    <label>Special Powers / Details</label>
+    <textarea id="powers" placeholder="Abilities, weapons, unique details..."></textarea>
+
+    <button onclick="generateCharacter()">🎨 Create Reference Prompt</button>
+
+    <div id="characterOutput" class="output hidden"></div>
+
+    <button class="secondary" onclick="copyElement('characterOutput')">📋 Copy Character Prompt</button>
+  </section>
+
+  <section class="card">
+    <h2>🎬 Scene Prompt Generator</h2>
+
+    <label>Scene Number</label>
+    <input id="sceneNumber" type="number" value="1" min="1">
+
+    <label>Scene Title</label>
+    <input id="sceneTitle" placeholder="Example: The Last Day">
+
+    <label>Scene Description</label>
+    <textarea id="sceneDescription" placeholder="Explain what happens in this scene..."></textarea>
+
+    <label>Character Action</label>
+    <textarea id="sceneAction" placeholder="What does the character do?"></textarea>
+
+    <label>Dialogue</label>
+    <textarea id="dialogue" placeholder="Write dialogue or narration..."></textarea>
+
+    <label>Camera Direction</label>
+    <select id="camera">
+      <option>Wide cinematic shot</option>
+      <option>Close-up shot</option>
+      <option>Medium shot</option>
+      <option>Low-angle heroic shot</option>
+      <option>Over-the-shoulder shot</option>
+      <option>Slow tracking shot</option>
+    </select>
+
+    <label>Lighting</label>
+    <select id="lighting">
+      <option>Soft cinematic lighting</option>
+      <option>Dark blue night lighting</option>
+      <option>Golden sunset lighting</option>
+      <option>Dramatic red lighting</option>
+      <option>Neon city lighting</option>
+      <option>Warm indoor lighting</option>
+    </select>
+
+    <label>Music</label>
+    <select id="music">
+      <option>Emotional piano</option>
+      <option>Epic orchestral music</option>
+      <option>Dark suspense music</option>
+      <option>Peaceful ambient music</option>
+      <option>Romantic soft music</option>
+      <option>No music</option>
+    </select>
+
+    <label>Sound Effects</label>
+    <input id="soundEffects" placeholder="Wind, footsteps, thunder, city sounds...">
+
+    <button onclick="generateScene()">🎥 Generate Scene Prompt</button>
+
+    <div id="sceneOutput" class="output hidden"></div>
+
+    <button class="secondary" onclick="copyElement('sceneOutput')">📋 Copy Scene Prompt</button>
+  </section>
+
+  <section class="card">
+    <h2>💾 Saved Projects</h2>
+    <small>Projects are saved in your browser's local storage.</small>
+
+    <div id="savedProjects"></div>
+
+    <button class="secondary" onclick="clearSavedProjects()">Delete All Saved Projects</button>
+  </section>
+
+  <footer>
+    Anime Story Studio • Free Prompt Creation Tool<br>
+    Real AI video generation requires a compatible external AI service.
+  </footer>
+
+</main>
+
+<script>
+function getValue(id) {
+  return document.getElementById(id).value.trim();
+}
+
+function showOutput(id, text) {
+  const element = document.getElementById(id);
+  element.textContent = text;
+  element.classList.remove("hidden");
+}
+
+function copyText(text) {
+  if (!text) {
+    alert("Nothing to copy yet.");
+    return;
+  }
+
+  if (navigator.clipboard && window.isSecureContext) {
+    navigator.clipboard.writeText(text)
+      .then(() => alert("Copied successfully!"))
+      .catch(() => fallbackCopy(text));
+  } else {
+    fallbackCopy(text);
+  }
+}
+
+function fallbackCopy(text) {
+  const area = document.createElement("textarea");
+  area.value = text;
+  document.body.appendChild(area);
+  area.select();
+
+  try {
+    document.execCommand("copy");
+    alert("Copied successfully!");
+  } catch (error) {
+    alert("Copy failed. Please select and copy the text manually.");
+  }
+
+  document.body.removeChild(area);
+}
+
+function copyElement(id) {
+  const text = document.getElementById(id).textContent.trim();
+  copyText(text);
+}
+
+function generateStory() {
+  const title = getValue("storyTitle") || "Untitled Anime Story";
+  const language = getValue("language");
+  const genre = getValue("genre");
+  const hero = getValue("heroName") || "Unknown Hero";
+  const description = getValue("heroDescription");
+  const world = getValue("world");
+  const premise = getValue("premise");
+  const tone = getValue("tone");
+  const count = getValue("sceneCount");
+
+  if (!premise) {
+    alert("Please enter your story premise.");
+    return;
+  }
+
+  const prompt = `
+ANIME STORY GENERATION PROMPT
+
+TITLE: ${title}
+LANGUAGE: ${language}
+GENRE: ${genre}
+MAIN CHARACTER: ${hero}
+
+CHARACTER DESCRIPTION:
+${description || "Create a visually consistent anime protagonist."}
+
+WORLD SETTING:
+${world || "Create a detailed cinematic world suitable for the story."}
+
+STORY PREMISE:
+${premise}
+
+STORY TONE:
+${tone}
+
+REQUIRED SCENES:
+${count}
+
+INSTRUCTIONS:
+Create a connected anime story with a clear beginning,
+development and ending.
+
+Maintain consistent character appearance,
+personality, clothing and world details.
+
+For every scene, provide:
+1. Scene number and title
+2. Visual description
+3. Character action
+4. Camera direction
+5. Lighting
+6. Dialogue or narration
+7. Music and sound effects
+
+Language for dialogue and narration: ${language}.
+
+Avoid random continuity changes.
+Make the story cinematic, emotionally engaging
+and suitable for an anime video production workflow.
+`;
+
+  showOutput("storyOutput", prompt);
+  document.getElementById("storyStatus").textContent =
+    "Story prompt generated successfully.";
+}
+
+function generateCharacter() {
+  const name = getValue("characterName") || "Unnamed Character";
+  const age = getValue("characterAge");
+  const gender = getValue("characterGender");
+  const hair = getValue("hair");
+  const eyes = getValue("eyes");
+  const clothing = getValue("clothing");
+  const personality = getValue("personality");
+  const powers = getValue("powers");
+
+  const prompt = `
+ANIME CHARACTER REFERENCE SHEET
+
+CHARACTER NAME: ${name}
+AGE: ${age || "Choose a suitable age"}
+IDENTITY: ${gender || "Not specified"}
+HAIR: ${hair || "Create a distinctive hairstyle"}
+EYES: ${eyes || "Choose a suitable eye color"}
+
+CLOTHING:
+${clothing || "Design clothing suitable for the story."}
+
+PERSONALITY:
+${personality || "Develop a consistent personality."}
+
+SPECIAL POWERS AND DETAILS:
+${powers || "No special powers specified."}
+
+VISUAL CONSISTENCY INSTRUCTIONS:
+Create a detailed anime character reference sheet.
+
+Show front view, side view and back view where possible.
+Maintain the same face, hairstyle, eye color,
+body proportions, clothing and accessories.
+
+Use clean character-design presentation,
+consistent proportions and clear visual details.
+
+This reference should help maintain character
+consistency across future anime scenes.
+`;
+
+  showOutput("characterOutput", prompt);
+}
+
+function generateScene() {
+  const number = getValue("sceneNumber") || "1";
+  const title = getValue("sceneTitle") || "Untitled Scene";
+  const description = getValue("sceneDescription");
+  const action = getValue("sceneAction");
+  const dialogue = getValue("dialogue");
+  const camera = getValue("camera");
+  const lighting = getValue("lighting");
+  const music = getValue("music");
+  const effects = getValue("soundEffects");
+
+  if (!description) {
+    alert("Please describe the scene.");
+    return;
+  }
+
+  const prompt = `
+CONNECTED ANIME VIDEO SCENE PROMPT
+
+SCENE ${number}: ${title}
+
+SCENE DESCRIPTION:
+${description}
+
+CHARACTER ACTION:
+${action || "Use natural and cinematic character movement."}
+
+DIALOGUE / NARRATION:
+${dialogue || "No dialogue. Use visual storytelling."}
+
+CAMERA:
+${camera}
+
+LIGHTING:
+${lighting}
+
+MUSIC:
+${music}
+
+SOUND EFFECTS:
+${effects || "Use suitable environmental sound effects."}
+
+VISUAL STYLE:
+High-quality cinematic anime.
+Detailed backgrounds, expressive faces,
+natural body movement and consistent character design.
+
+CONTINUITY:
+Keep all characters consistent with their
+previous reference sheets.
+
+Maintain the established world, clothing,
+time of day, emotional tone and story progression.
+
+VIDEO DIRECTION:
+Create a clear beginning, middle and ending
+for this scene. Use smooth transitions,
+appropriate camera movement and believable
+character actions.
+
+DIALOGUE LANGUAGE:
+Use the selected project language when dialogue
+is added. Preserve the exact meaning and emotion.
+`;
+
+  showOutput("sceneOutput", prompt);
+}
+
+function clearForm() {
+  const fields = [
+    "storyTitle", "heroName", "heroDescription",
+    "world", "premise"
+  ];
+
+  fields.forEach(id => {
+    document.getElementById(id).value = "";
+  });
+
+  document.getElementById("storyOutput").classList.add("hidden");
+  document.getElementById("storyStatus").textContent = "";
+}
+
+function saveProject() {
+  const title = getValue("storyTitle") || "Untitled Project";
+  const premise = getValue("premise");
+
+  if (!premise) {
+    alert("Enter a story premise before saving.");
+    return;
+  }
+
+  const project = {
+    id: Date.now(),
+    title: title,
+    language: getValue("language"),
+    genre: getValue("genre"),
+    hero: getValue("heroName"),
+    premise: premise,
+    created: new Date().toLocaleString()
+  };
+
+  const projects = JSON.parse(
+    localStorage.getItem("animeProjects") || "[]"
+  );
+
+  projects.unshift(project);
+  localStorage.setItem("animeProjects", JSON.stringify(projects));
+
+  document.getElementById("storyStatus").textContent =
+    "Project saved on this device.";
+
+  displaySavedProjects();
+}
+
+function displaySavedProjects() {
+  const container = document.getElementById("savedProjects");
+
+  const projects = JSON.parse(
+    localStorage.getItem("animeProjects") || "[]"
+  );
+
+  container.innerHTML = "";
+
+  if (!projects.length) {
+    container.innerHTML =
+      '<p style="color:#aaa5c8;margin-top:15px;">No saved projects yet.</p>';
+    return;
+  }
+
+  projects.forEach(project => {
+    const div = document.createElement("div");
+    div.className = "saved-project";
+
+    const strong = document.createElement("strong");
+    strong.textContent = project.title;
+
+    const info = document.createElement("p");
+    info.style.color = "#aaa5c8";
+    info.style.fontSize = "12px";
+    info.style.marginTop = "6px";
+    info.textContent =
+      project.genre + " • " + project.language + " • " + project.created;
+
+    const button = document.createElement("button");
+    button.className = "danger";
+    button.textContent = "Delete";
+
+    button.onclick = function() {
+      deleteProject(project.id);
+    };
+
+    div.appendChild(strong);
+    div.appendChild(info);
+    div.appendChild(button);
+    container.appendChild(div);
+  });
+}
+
+function deleteProject(id) {
+  const projects = JSON.parse(
+    localStorage.getItem("animeProjects") || "[]"
+  );
+
+  const filtered = projects.filter(project => project.id !== id);
+
+  localStorage.setItem("animeProjects", JSON.stringify(filtered));
+  displaySavedProjects();
+}
+
+function clearSavedProjects() {
+  if (!confirm("Delete all saved projects?")) {
+    return;
+  }
+
+  localStorage.removeItem("animeProjects");
+  displaySavedProjects();
+}
+
+displaySavedProjects();
+</script>
+
+</body>
+</html>
+
